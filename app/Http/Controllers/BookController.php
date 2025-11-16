@@ -34,7 +34,7 @@ class BookController extends Controller
         // Execute
         $book = $query->get();
         if($book->isEmpty()){
-            return response()->json(['message => No Books Found'], 404);
+            return response()->json(['message' => 'No Books Found'], 404);
         }
         return BookResource::collection($book);
     }
@@ -87,13 +87,13 @@ class BookController extends Controller
         }
         $book = Book::find($id);
         if(!$book){
-            return response()->json(['message => No Book Found'], 404);
+            return response()->json(['message' => 'No Book Found'], 404);
         }
 
         //assign array data to variable
         $book->update($validated->validated());
         return response()->json([
-            'message' => 'Product Updated Successfully!',
+            'message' => 'Product updated successfully!',
             'data' => new BookResource($book)
         ], 200);
     }
@@ -102,7 +102,7 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         if(!$book){
-            return response()->json(['message => No Book Found'], 404);
+            return response()->json(['message' => 'No Book Found'], 404);
         }
         $book->delete();
         return response()->json([
