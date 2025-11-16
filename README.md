@@ -64,3 +64,168 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+📚 Laravel Books API
+
+A simple RESTful API built with Laravel that manages a collection of books.
+Features include CRUD operations, validation, query filtering, sorting, and JSON API responses.
+
+🚀 Features
+
+Create, read, update, and delete books
+
+Input validation using Laravel’s Validator
+
+JSON Resource formatting
+
+Query parameters for filtering (title, author, year)
+
+Sorting support
+
+Proper HTTP status codes
+
+Clear error messages
+
+🛠 Requirements
+
+PHP 8.1+
+
+Composer
+
+Laravel 10+
+
+MySQL / phpMyAdmin via Laragon
+
+⚙️ Installation
+git clone <your-repo-link>
+cd your-project
+composer install
+cp .env.example .env
+php artisan key:generate
+
+Configure .env
+
+Update database credentials:
+
+DB_DATABASE=your_db
+DB_USERNAME=root
+DB_PASSWORD=
+
+Run migrations:
+php artisan migrate
+
+Start Server:
+php artisan serve
+
+
+Your API will now run at:
+
+http://127.0.0.1:8000/api
+
+📂 Book Model Structure
+
+Each Book record contains:
+
+Field	Type
+id	integer
+title	string
+author	string
+year	integer
+created_at	datetime
+updated_at	datetime
+📡 API Endpoints
+1. Get All Books
+
+GET /api/books
+
+Supports optional filters:
+
+Query Param	Description
+title	Filter by title (partial allowed)
+author	Filter by author (partial allowed)
+year	Filter by exact year
+sort	Sort by a field (ex: sort=title)
+
+Example:
+
+GET /api/books?title=Lord&sort=year
+
+2. Get One Book
+
+GET /api/books/{id}
+
+Success Response (200):
+
+{
+  "id": 1,
+  "title": "Book Title",
+  "author": "Author",
+  "year": 2020
+}
+
+3. Create a Book
+
+POST /api/books
+
+Body (JSON):
+
+{
+  "title": "New Book",
+  "author": "Someone",
+  "year": 2022
+}
+
+
+Success Response (201):
+
+{
+  "message": "Book Created Successfully",
+  "data": { ...book }
+}
+
+
+Validation Errors (422):
+
+{
+  "message": "Fields have wrong input!",
+  "error": {
+    "title": ["The title field is required"]
+  }
+}
+
+4. Update a Book
+
+PUT /api/books/{id}
+
+Body (JSON): (all fields optional)
+
+{
+  "title": "Updated Title"
+}
+
+
+Success Response (200):
+
+{
+  "message": "Product updated successfully!",
+  "data": { ...updated_book }
+}
+
+5. Delete a Book
+
+DELETE /api/books/{id}
+
+Success Response (200):
+
+{
+  "message": "Book Deleted",
+  "data": { ...deleted_book }
+}
+
+
+Not Found (404):
+
+{
+  "message": "No Book Found"
+}
