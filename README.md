@@ -112,12 +112,12 @@ php artisan serve
 ### Each Book record contains:
 
 Field:	           Type:
-id         =>          integer
-title      =>          string
-author =>           string
-year     =>           integer
-created_at     => datetime
-updated_at    => datetime
+id           =>     integer
+title        =>     string
+author       =>     string
+year         =>     integer
+created_at   =>     datetime
+updated_at   =>     datetime
 
 
 # 📡 API Endpoints
@@ -127,11 +127,11 @@ updated_at    => datetime
 
 Supports optional filters:
 
-- Query Param	Description
-- title	Filter by title (partial allowed)
-- author	Filter by author (partial allowed)
-- year	Filter by exact year
-- sort	Sort by a field (ex: sort=title)
+        - Query Param	Description
+        - title	Filter by title (partial allowed)
+        - author	Filter by author (partial allowed)
+        - year	Filter by exact year
+        - sort	Sort by a field (ex: sort=title)
 
 Example:
 
@@ -141,80 +141,80 @@ GET /api/books?title=Lord&sort=year
 
 ### GET /api/books/{id}
 
-Success Response (200):
-
-{
-  "id": 1,
-  "title": "Book Title",
-  "author": "Author",
-  "year": 2020
-}
+    Success Response (200):
+    
+    {
+      "id": 1,
+      "title": "Book Title",
+      "author": "Author",
+      "year": 2020
+    }
 
 ## 3. Create a Book
 
 ### POST /api/books
 
-Body (JSON):
+    Body (JSON):
+    
+    {
+      "title": "New Book",
+      "author": "Someone",
+      "year": 2022
+    }
 
-{
-  "title": "New Book",
-  "author": "Someone",
-  "year": 2022
-}
+    
+    Success Response (201):
+    
+    {
+      "message": "Book Created Successfully",
+      "data": { ...book }
+    }
 
 
-Success Response (201):
-
-{
-  "message": "Book Created Successfully",
-  "data": { ...book }
-}
-
-
-Validation Errors (422):
-
-{
-  "message": "Fields have wrong input!",
-  "error": {
-    "title": ["The title field is required"]
-  }
-}
+    Validation Errors (422):
+    
+    {
+      "message": "Fields have wrong input!",
+      "error": {
+        "title": ["The title field is required"]
+      }
+    }
 
 ## 4. Update a Book
 
 ### PUT /api/books/{id}
 
-Body (JSON): (all fields optional)
-
-{
-  "title": "Updated Title"
-}
-
-
-Success Response (200):
-
-{
-  "message": "Product updated successfully!",
-  "data": { ...updated_book }
-}
+    Body (JSON): (all fields optional)
+    
+    {
+      "title": "Updated Title"
+    }
+    
+    
+    Success Response (200):
+    
+    {
+      "message": "Product updated successfully!",
+      "data": { ...updated_book }
+    }
 
 ## 5. Delete a Book
 
 ### DELETE /api/books/{id}
 
-Success Response (200):
-
-{
-  "message": "Book Deleted",
-  "data": { ...deleted_book }
-}
-
-
-Not Found (404):
-
-{
-  "message": "No Book Found"
-}
+    Success Response (200):
+    
+    {
+      "message": "Book Deleted",
+      "data": { ...deleted_book }
+    }
+    
+    
+    Not Found (404):
+    
+    {
+      "message": "No Book Found"
+    }
 
 
 Not Found (404):
