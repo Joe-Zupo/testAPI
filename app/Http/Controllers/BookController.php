@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Http\Resources;
 use App\Http\Resources\BookResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -44,9 +43,9 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         if(!$book){
-            return response()->json(['message => No Book Found'], 404);
+            return response()->json(['message' => 'No Book Found'], 404);
         }
-        return new BookResource($book, 200);
+        return new BookResource($book);
     }
 
     public function store(Request $request)
